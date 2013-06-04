@@ -18,3 +18,5 @@ gait
         作者不再维护和更新  
     问题反馈
         justplus AT ahu.edu.cn
+        
+![github](http://justplus-picture.stor.sinaapp.com/backup/gait.png "gait")  
