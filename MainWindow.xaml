@@ -1,0 +1,201 @@
+﻿<Window x:Class="Gait.MainWindow" Name="window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="步态信息挖掘-AHU" Height="750" Width="1100" Icon="/Gait;component/Images/Logo.png" WindowStartupLocation="CenterScreen" MinWidth="980" MinHeight="750" MouseWheel="window_MouseWheel">
+    <Grid>
+        <Menu Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="Auto" Background="{x:Null}">
+            <MenuItem Header="文件(_F)" >
+                <MenuItem Header="打开CSV文件" Click="FileOpen_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/File_Open.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="保存单帧有效值" Click="Save_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Save.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="保存单帧" Click="SaveOne_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Save_One.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="全部保存" Click="SaveAll_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Save_All.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="退出" Click="Exit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Close.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="帧操作(_O)" >
+                <MenuItem Header="播放" Click="PlayMenu_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Play.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="暂停" Click="Pause_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Pause.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="停止" Click="Stop_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Stop.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="前一帧" Click="Pre_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Left.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="后一帧" Click="Right_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Right.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="跳转至" Click="Goto_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Goto.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="曲线类型(_T)" >
+                <MenuItem Header="总压力曲线" Click="Pressure_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Pressure.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="接触面积曲线" Click="Area_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Area.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="最大压力曲线" Click="MaxPressure_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/MaxPres.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="设置(_S)" >
+                <MenuItem Header="系统设置">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Setting.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="帮助(_H)" >
+                <MenuItem Header="查看帮助" Click="Help_Clicked">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/Help.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="关于" Click="About_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Gait;component/Images/About.png" Stretch="Uniform" Width="20" Height="20" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Height="40" HorizontalAlignment="Left" Margin="0,24,0,0" Name="toolBarTray1" VerticalAlignment="Top" Width="843">
+            <ToolBar Band="1" BandIndex="1">
+                <Button  Click="FileOpen_Click">
+                    <Image Source="/Gait;component/Images/File_Open.png" Height="32" Width="32" ToolTip="打开CSV文件" />
+                </Button>
+                <Button Click="Save_Click">
+                    <Image Source="/Gait;component/Images/Save.png" Height="32" Width="32" ToolTip="保存有效值" />
+                </Button>
+                <Button Click="SaveOne_Click">
+                    <Image Source="/Gait;component/Images/Save_One.png" Height="32" Width="32" ToolTip="保存当前帧" />
+                </Button>
+                <Button Click="SaveAll_Click">
+                    <Image Source="/Gait;component/Images/Save_All.png" Height="32" Width="32" ToolTip="保存所有帧" />
+                </Button>
+                <Button Click="Exit_Click">
+                    <Image Source="/Gait;component/Images/Close.png" Height="32" Width="32" ToolTip="退出" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="2">
+                <Button  Click="Play_Click">
+                    <Image x:Name="playButton" Source="/Gait;component/Images/Play.png" Height="32" Width="32" ToolTip="播放" Tag="Play" />
+                </Button>
+                <Button Click="Stop_Click">
+                    <Image Source="/Gait;component/Images/Stop.png" Height="32" Width="32" ToolTip="停止" />
+                </Button>
+                <Button Click="Pre_Click">
+                    <Image Source="/Gait;component/Images/Left.png" Height="32" Width="32" ToolTip="前一帧" />
+                </Button>
+                <Button Click="Right_Click">
+                    <Image Source="/Gait;component/Images/Right.png" Height="32" Width="32" ToolTip="后一帧" />
+                </Button>
+                <Button Click="Goto_Click">
+                    <Image Source="/Gait;component/Images/Goto.png" Height="32" Width="32" ToolTip="跳转到" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="3">
+                <Button x:Name="button1" Click="Pressure_Click">
+                    <Image Source="/Gait;component/Images/Pressure.png" Height="32" Width="32" ToolTip="压力曲线" />
+                </Button>
+                <Button x:Name="button2" Click="Area_Click">
+                    <Image Source="/Gait;component/Images/Area.png" Height="32" Width="32" ToolTip="接触面积曲线" />
+                </Button>
+                <Button x:Name="button3" Click="MaxPressure_Click">
+                    <Image Source="/Gait;component/Images/MaxPres.png" Height="32" Width="32" ToolTip="最大压力曲线" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="4">
+                <Button Click="SelectRegion_Click">
+                    <Image Source="/Gait;component/Images/Region.png" Height="32" Width="32" ToolTip="选取区域" />
+                </Button>
+                <Button Click="LeftRight_Clicked">
+                    <Image Source="/Gait;component/Images/Left_Right.png" Height="32" Width="32" ToolTip="左右翻转" />
+                </Button>
+                <Button Click="UpDown_Clicked">
+                    <Image Source="/Gait;component/Images/Up_Down.png" Height="32" Width="32" ToolTip="上下翻转" />
+                </Button>
+            </ToolBar>
+            <ToolBar Band="1" BandIndex="5">
+                <Button Click="Setting_Clicked">
+                    <Image Source="/Gait;component/Images/Setting.png" Height="32" Width="32" ToolTip="系统设置" />
+                </Button>
+                <Button Click="Help_Clicked">
+                    <Image Source="/Gait;component/Images/Help.png" Height="32" Width="32" ToolTip="查看帮助" />
+                </Button>
+                <Button Click="About_Click">
+                    <Image Source="/Gait;component/Images/About.png" Height="32" Width="32" ToolTip="关于" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Label Content="帧数：0，步数：0" Height="28" HorizontalAlignment="Left" Margin="7,0,0,200" Name="label1" VerticalAlignment="Bottom" Width="152" />
+        <ScrollViewer Height="200" HorizontalAlignment="Left" Name="scrollViewer1" VerticalAlignment="Bottom" Width="{Binding ElementName=window, Path=ActualWidth}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" BorderBrush="DarkBlue">
+            <Canvas Height="200" Name="canvas1" HorizontalAlignment="Left" Width="50" Margin="0,0,0,0" Background="Transparent" MouseLeftButtonDown="StateChange" ></Canvas>
+        </ScrollViewer>
+        <Canvas Height="400" HorizontalAlignment="Left" Margin="7,80,0,0" Name="canvas2" VerticalAlignment="Top" Width="400" >
+            <Canvas.Background>
+                <SolidColorBrush />
+            </Canvas.Background>
+        </Canvas>
+        <Label Content="当前帧：0" Height="28" HorizontalAlignment="Left" Margin="165,0,0,200" Name="label2" VerticalAlignment="Bottom" Width="94" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="286,0,0,200" Name="label3" VerticalAlignment="Bottom" Width="125" />
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Name="scrollViewer2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderBrush="DarkBlue" Margin="468,80,0,0" Height="190" >
+            <Canvas Height="170" HorizontalAlignment="Left" Name="canvas3" VerticalAlignment="Top" Width="600" />
+        </ScrollViewer>
+        <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Name="scrollViewer3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderBrush="DarkBlue" Margin="468,270,0,0" Height="190" >
+            <Canvas Height="170" HorizontalAlignment="Left" Name="canvas4" VerticalAlignment="Top" Width="600" />
+        </ScrollViewer>
+        <Image Height="400" HorizontalAlignment="Left" Margin="415,80,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="17" Source="/Gait;component/Images/colormap.jpg" />
+        <Label Content="0" Height="22" HorizontalAlignment="Left" Margin="429,458,0,0" Name="label4" VerticalAlignment="Top" Width="18" />
+        <Label Content="128" Height="22" HorizontalAlignment="Left" Margin="429,70,0,0" Name="label5" VerticalAlignment="Top" Width="32" />
+        <Label Content="小提示：滚动鼠标滚轮也可以移动帧哦！" Height="28" HorizontalAlignment="Left" Margin="429,0,0,200" Name="label6" VerticalAlignment="Bottom" Width="405" VerticalContentAlignment="Top">
+            <Label.Foreground>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFE80F0F" Offset="0" />
+                    <GradientStop Color="#FF1DE24A" Offset="1" />
+                </LinearGradientBrush>
+            </Label.Foreground>
+        </Label>
+    </Grid>
+</Window>

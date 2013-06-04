@@ -1,0 +1,12 @@
+﻿<Window x:Class="Gait.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="关于步态信息挖掘软件" Height="300" Width="320" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Gait;component/Images/About.png">
+    <Grid>
+        <Label Content="步态信息挖掘软件2012" Height="32" HorizontalAlignment="Left" Margin="29,24,0,0" Name="label1" VerticalAlignment="Top" FontSize="18" Width="201" />
+        <Label Content="版权归安徽大学电子信息工程学院所有" Height="28" HorizontalAlignment="Left" Margin="29,71,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="联系：justplus@ahu.edu.cn" Height="28" HorizontalAlignment="Left" Margin="29,139,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Copyright EE@AHU 2012 reserved" Height="28" HorizontalAlignment="Left" Margin="29,105,0,0" Name="label4" VerticalAlignment="Top" />
+        <Button Content="确定" Height="23" HorizontalAlignment="Left" Margin="95,199,0,0" Name="button1" VerticalAlignment="Top" Width="75" IsDefault="True" IsCancel="False" Click="button1_Click" />
+    </Grid>
+</Window>
